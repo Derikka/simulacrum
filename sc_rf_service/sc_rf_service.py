@@ -331,6 +331,10 @@ class CavFaultPVGroup(PVGroup):
                                                        dtype=ChannelType.DOUBLE)
     detune_feedback: PvpropertyDouble = pvproperty(name="FBSTATSUM", value=0,
                                                    dtype=ChannelType.DOUBLE)
+    phaseReferenceLine: PvpropertyEnum = pvproperty(name="PRLSUM.SEVR", value=0,
+                                                    dtype=ChannelType.ENUM,
+                                                    enum_strings=("NO_ALARM", "MINOR",
+                                                                  "MAJOR", "INVALID"))
 
 
 class CavityPVGroup(PVGroup):
@@ -590,6 +594,8 @@ class SSAPVGroup(PVGroup):
                                            dtype=ChannelType.ENUM,
                                            enum_strings=("NO_ALARM", "MINOR",
                                                          "MAJOR", "INVALID"))
+    ssa_480: PvpropertyInteger = pvproperty(value=0, name="480VACStat",
+                                            dtype=ChannelType.INT)
 
     def __init__(self, prefix, cavityGroup: CavityPVGroup):
 
